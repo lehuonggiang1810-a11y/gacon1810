@@ -1,139 +1,294 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Convert Link Shopee – Nhận Voucher</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Link Shopee - Gacon1810</title>
+    <style>
+        /* CSS Reset & Cơ bản */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
 
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff7a18, #ffb347);
-    margin: 0;
-    padding: 0;
-  }
-  .container {
-    max-width: 420px;
-    margin: 40px auto;
-    background: #fff;
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.15);
-    text-align: center;
-  }
-  h1 {
-    font-size: 22px;
-    margin-bottom: 8px;
-  }
-  .subtitle {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
-  }
-  .benefits {
-    background: #fff6f2;
-    border-radius: 12px;
-    padding: 12px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    text-align: left;
-  }
-  .benefits li {
-    margin-bottom: 6px;
-  }
-  input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-  }
-  button {
-    width: 100%;
-    padding: 14px;
-    margin-top: 15px;
-    background: #ee4d2d;
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  button:hover {
-    opacity: .9;
-  }
-  .result {
-    margin-top: 20px;
-    font-size: 15px;
-  }
-  .buy-link {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 12px 18px;
-    background: #ee4d2d;
-    color: #fff;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  .footer {
-    margin-top: 20px;
-    font-size: 12px;
-    color: #999;
-  }
-</style>
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Container chính của công cụ */
+        .converter-container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        /* Tiêu đề và Mô tả */
+        .converter-container h2 {
+            color: #1a1a1a;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .converter-container .subtitle {
+            color: #606770;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        /* Các nút bấm chính */
+        .btn {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .btn-blue {
+            background-color: #1877f2;
+            color: white;
+        }
+
+        .btn-blue:hover {
+            background-color: #166fe5;
+        }
+
+        .btn-blue .icon {
+            /* Icon Facebook giả lập */
+            width: 18px;
+            height: 18px;
+            background-color: white;
+            border-radius: 50%;
+            position: relative;
+        }
+        .btn-blue .icon::before {
+            content: "f";
+            color: #1877f2;
+            font-weight: bold;
+            font-size: 14px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn-red {
+            background-color: #ee4d2d;
+            color: white;
+            margin-bottom: 25px;
+        }
+
+        .btn-red:hover {
+            background-color: #d33e1e;
+        }
+
+        /* Ô nhập liệu */
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .url-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #dddfe2;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #1c1e21;
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+        }
+
+        /* Vùng kết quả */
+        .result-area {
+            margin-top: 25px;
+            border-top: 1px solid #e5e5e5;
+            padding-top: 20px;
+            display: none; /* Ẩn mặc định, chỉ hiện khi có kết quả */
+        }
+
+        .result-title {
+            color: #31a24c;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .result-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #1877f2;
+            text-decoration: underline;
+            font-weight: 500;
+            cursor: pointer;
+            word-break: break-all;
+        }
+
+        .guide-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .guide-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+
+        .guide-title .icon-info {
+            /* Icon Info giả lập */
+            width: 20px;
+            height: 20px;
+            background-color: #1877f2;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .guide-steps {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .guide-steps li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 10px;
+            color: #606770;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .guide-steps li::before {
+            content: counter(step-counter) ".";
+            counter-increment: step-counter;
+            position: absolute;
+            left: 0;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .guide-steps li strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        /* Tối ưu cho thiết bị di động */
+        @media (max-width: 480px) {
+            .converter-container { padding: 20px; }
+            .converter-container h2 { font-size: 24px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
-  <h1>🔗 Chuyển Link Shopee</h1>
-  <div class="subtitle">Mua đúng sản phẩm – Nhận voucher 20–25%</div>
+    <div class="converter-container">
+        <h2>Convert Link Shopee</h2>
+        <p class="subtitle">Chỉ 1 link / lần</p>
 
-  <div class="benefits">
-    <ul>
-      <li>✅ Áp dụng voucher sàn tự động</li>
-      <li>✅ Giá không tăng – mua đúng link</li>
-      <li>✅ An toàn – không thu thập dữ liệu</li>
-    </ul>
-  </div>
+        <button class="btn btn-blue">
+            <span class="icon"></span>
+            Đổi mã Facebook
+        </button>
 
-  <input
-    type="text"
-    id="userLink"
-    placeholder="Dán link sản phẩm Shopee bạn muốn mua"
-  >
+        <div class="input-group">
+            <input type="text" id="shopeeInput" class="url-input" placeholder="Dán link Shopee tại đây">
+        </div>
 
-  <button onclick="convertLink()">Nhận voucher & mua ngay</button>
+        <button class="btn btn-red" onclick="processConversion()">
+            Nhận voucher
+        </button>
 
-  <div class="result" id="result"></div>
+        <div class="result-area" id="resultArea">
+            <div class="result-title">
+                ✅ Link đã được chuyển đổi:
+            </div>
+            <a id="finalLink" class="result-link" target="_blank">
+                👉 Bấm vào đây để mua và nhận ưu đãi
+            </a>
+        </div>
+    </div>
 
-  <div class="footer">
-    Trang hỗ trợ mua hàng qua link ưu đãi
-  </div>
-</div>
+    <div class="guide-container">
+        <div class="guide-title">
+            <div class="icon-info">i</div>
+            Hướng dẫn
+        </div>
+        <ol class="guide-steps">
+            <li>Sau khi tạo link, nhấn <strong>Copy Link</strong>.</li>
+            <li>Dán link dưới bình luận bài đăng này.</li>
+            <li>Click vào link để mở Shopee sẽ nhận được mã.</li>
+        </ol>
+    </div>
 
-<script>
-function convertLink() {
-  const userLink = document.getElementById("userLink").value.trim();
+    <script>
+      
+        const MY_AFFILIATE_ID = "https://shopee.vn/user/account/profile"; 
 
-  if (!userLink) {
-    alert("Vui lòng dán link sản phẩm Shopee");
-    return;
-  }
+        function processConversion() {
+            const input = document.getElementById('shopeeInput').value;
+            const resultArea = document.getElementById('resultArea');
+            const finalLinkAnchor = document.getElementById('finalLink');
 
-  //
-  const affiliateLink = "https://shopee.vn/user/account/profile";
+            if (input.trim() === "") {
+                alert("Vui lòng dán link Shopee trước!");
+                return;
+            }
 
-  document.getElementById("result").innerHTML = `
-    🎉 Link mua đã sẵn sàng!<br>
-    <a class="buy-link" href="${affiliateLink}" target="_blank">
-      👉 Mua ngay & nhận voucher
-    </a>
-  `;
-}
-</script>
+            let finalUrl = "";
+            if (input.includes("?")) {
+                finalUrl = input + "&aff_click_id=" + MY_AFFILIATE_ID;
+            } else {
+                finalUrl = input + "?aff_click_id=" + MY_AFFILIATE_ID;
+            }
 
+            finalLinkAnchor.href = finalUrl;
+          
+            resultArea.style.display = "block"; 
+        }
+    </script>
 </body>
 </html>
