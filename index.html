@@ -1,51 +1,139 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>CozyHome - Link Converter</title>
-    <style>
-        body { font-family: sans-serif; padding: 50px; text-align: center; }
-        input { width: 80%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px; }
-        button { padding: 10px 20px; background-color: #ee4d2d; color: white; border: none; cursor: pointer; border-radius: 5px; }
-        #result { margin-top: 20px; font-weight: bold; color: green; word-break: break-all; }
-    </style>
+<meta charset="UTF-8">
+<title>Convert Link Shopee – Nhận Voucher</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff7a18, #ffb347);
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 420px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    text-align: center;
+  }
+  h1 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  .benefits {
+    background: #fff6f2;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: left;
+  }
+  .benefits li {
+    margin-bottom: 6px;
+  }
+  input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+  }
+  button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    background: #ee4d2d;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  button:hover {
+    opacity: .9;
+  }
+  .result {
+    margin-top: 20px;
+    font-size: 15px;
+  }
+  .buy-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 18px;
+    background: #ee4d2d;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #999;
+  }
+</style>
 </head>
+
 <body>
 
-    <h2>Công cụ chuyển đổi Link mua hàng</h2>
-    <p>Dán link sản phẩm vào đây để nhận ưu đãi:</p>
-    
-    <input type="text" id="userInput" placeholder="Dán link Shopee hoặc sản phẩm tại đây...">
-    <br>
-    <button onclick="convertLink()">CONVERT NGAY</button>
+<div class="container">
+  <h1>🔗 Chuyển Link Shopee</h1>
+  <div class="subtitle">Mua đúng sản phẩm – Nhận voucher 20–25%</div>
 
-    <div id="result"></div>
+  <div class="benefits">
+    <ul>
+      <li>✅ Áp dụng voucher sàn tự động</li>
+      <li>✅ Giá không tăng – mua đúng link</li>
+      <li>✅ An toàn – không thu thập dữ liệu</li>
+    </ul>
+  </div>
 
-    <script>
-        function convertLink() {
-            const input = document.getElementById('userInput').value;
-            const resultDiv = document.getElementById('result');
+  <input
+    type="text"
+    id="userLink"
+    placeholder="Dán link sản phẩm Shopee bạn muốn mua"
+  >
 
-            if (input.trim() === "") {
-                alert("Vui lòng dán link trước!");
-                return;
-            }
+  <button onclick="convertLink()">Nhận voucher & mua ngay</button>
 
-            const myAffiliateID = "https://shopee.vn/user/account/profile"; 
+  <div class="result" id="result"></div>
 
-            let finalLink = "";
-            if (input.includes("?")) {
-                finalLink = input + "&aff_click_id=" + myAffiliateID;
-            } else {
-                finalLink = input + "?aff_click_id=" + myAffiliateID;
-            }
-            resultDiv.innerHTML = `
-                <p>Link của bạn đã sẵn sàng:</p>
-                <a href="${finalLink}" target="_blank">${finalLink}</a>
-                <br><br>
-                <small>(Nhấn vào link trên để mua hàng)</small>
-            `;
-        }
-    </script>
+  <div class="footer">
+    Trang hỗ trợ mua hàng qua link ưu đãi
+  </div>
+</div>
+
+<script>
+function convertLink() {
+  const userLink = document.getElementById("userLink").value.trim();
+
+  if (!userLink) {
+    alert("Vui lòng dán link sản phẩm Shopee");
+    return;
+  }
+
+  //
+  const affiliateLink = "https://shopee.vn/user/account/profile";
+
+  document.getElementById("result").innerHTML = `
+    🎉 Link mua đã sẵn sàng!<br>
+    <a class="buy-link" href="${affiliateLink}" target="_blank">
+      👉 Mua ngay & nhận voucher
+    </a>
+  `;
+}
+</script>
+
 </body>
 </html>
