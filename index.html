@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Convert Link Shopee</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial;background:#f2f4f8}
+.box{max-width:420px;margin:30px auto;background:#fff;padding:20px;border-radius:15px}
+h2{text-align:center}
+input{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:1px solid #ccc}
+button{width:100%;padding:12px;border:none;border-radius:8px;margin:6px 0;font-size:16px}
+.red{background:#e53935;color:#fff}
+.blue{background:#1877f2;color:#fff}
+.gray{background:#eee}
+.result{margin-top:15px;color:#e53935;font-weight:bold}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Convert Link Shopee</h2>
+<p style="text-align:center;color:#666">Chỉ 1 link / lần</p>
+
+<button class="blue">🔵 Đổi mã Facebook</button>
+<button class="red">🔴 Đổi mã Youtube</button>
+
+<input id="link" placeholder="Dán link Shopee tại đây">
+<button class="red" onclick="convert()">Nhận voucher</button>
+
+<div class="result" id="result">Kết quả sẽ hiển thị ở đây...</div>
+</div>
+
+<script>
+function convert(){
+  let l=document.getElementById("link").value;
+  if(!l){alert("Bạn chưa dán link Shopee");return;}
+  window.location.href="https://shope.ee/XXXXX";
+}
+</script>
+
+</body>
+</html>
