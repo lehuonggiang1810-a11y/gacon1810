@@ -1,54 +1,51 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Convert Link Shopee</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body{font-family:Arial;background:#f2f4f8}
-.box{max-width:420px;margin:30px auto;background:#fff;padding:20px;border-radius:15px}
-h2{text-align:center}
-input{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:1px solid #ccc}
-button{width:100%;padding:12px;border:none;border-radius:8px;margin:6px 0;font-size:16px}
-.red{background:#e53935;color:#fff}
-.blue{background:#1877f2;color:#fff}
-.gray{background:#eee}
-.result{margin-top:15px;color:#e53935;font-weight:bold}
-</style>
+    <meta charset="UTF-8">
+    <title>CozyHome - Link Converter</title>
+    <style>
+        body { font-family: sans-serif; padding: 50px; text-align: center; }
+        input { width: 80%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        button { padding: 10px 20px; background-color: #ee4d2d; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        #result { margin-top: 20px; font-weight: bold; color: green; word-break: break-all; }
+    </style>
 </head>
 <body>
 
-<div class="box">
-<h2>Convert Link Shopee</h2>
-<p style="text-align:center;color:#666">Chỉ 1 link / lần</p>
+    <h2>Công cụ chuyển đổi Link mua hàng</h2>
+    <p>Dán link sản phẩm vào đây để nhận ưu đãi:</p>
+    
+    <input type="text" id="userInput" placeholder="Dán link Shopee hoặc sản phẩm tại đây...">
+    <br>
+    <button onclick="convertLink()">CONVERT NGAY</button>
 
-<button class="blue">🔵 Đổi mã Facebook</button>
+    <div id="result"></div>
 
-<input id="link" placeholder="Dán link Shopee tại đây">
-<button class="red" onclick="convert()">Nhận voucher</button>
+    <script>
+        function convertLink() {
+            const input = document.getElementById('userInput').value;
+            const resultDiv = document.getElementById('result');
 
-<div class="result" id="result">Kết quả sẽ hiển thị ở đây...</div>
-</div>
+            if (input.trim() === "") {
+                alert("Vui lòng dán link trước!");
+                return;
+            }
 
-<script>
-function convert(){
-  let link = document.getElementById("link").value;
+            const myAffiliateID = "https://shopee.vn/user/account/profile"; 
 
-  if(!link){
-    alert("Bạn chưa dán link Shopee");
-    return;
-  }
-
-  let affiliateLink = "https://shopee.vn/user/purchase/";
-
-  document.getElementById("result").innerHTML = `
-    <p>✅ Link đã được chuyển đổi:</p>
-    <a href="${affiliateLink}" target="_blank">
-      👉 Bấm vào đây để mua và nhận ưu đãi
-    </a>
-  `;
-}
-</script>
-
+            let finalLink = "";
+            if (input.includes("?")) {
+                finalLink = input + "&aff_click_id=" + myAffiliateID;
+            } else {
+                finalLink = input + "?aff_click_id=" + myAffiliateID;
+            }
+            resultDiv.innerHTML = `
+                <p>Link của bạn đã sẵn sàng:</p>
+                <a href="${finalLink}" target="_blank">${finalLink}</a>
+                <br><br>
+                <small>(Nhấn vào link trên để mua hàng)</small>
+            `;
+        }
+    </script>
 </body>
 </html>
