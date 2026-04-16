@@ -32,9 +32,21 @@ button{width:100%;padding:12px;border:none;border-radius:8px;margin:6px 0;font-s
 
 <script>
 function convert(){
-  let l=document.getElementById("link").value;
-  if(!l){alert("Bạn chưa dán link Shopee");return;}
-  window.location.href="https://shope.ee/https://shopee.vn/user/account/profile";
+  let link = document.getElementById("link").value;
+
+  if(!link){
+    alert("Bạn chưa dán link Shopee");
+    return;
+  }
+
+  let affiliateLink = "https://shopee.vn/user/purchase/";
+
+  document.getElementById("result").innerHTML = `
+    <p>✅ Link đã được chuyển đổi:</p>
+    <a href="${affiliateLink}" target="_blank">
+      👉 Bấm vào đây để mua và nhận ưu đãi
+    </a>
+  `;
 }
 </script>
 
